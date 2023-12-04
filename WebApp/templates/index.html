@@ -1,0 +1,72 @@
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles.css') }}">
+
+{% extends "layout.html" %} {% block body%}
+<div class="container">
+  <br /><br />
+  <form action="#" method="POST" enctype="multipart/form-data">
+    <div class="input-group">
+      <input type="file" class="form-control" name="image_name" required />
+      <input type="submit" value="Upload" class="btn btn-lg btn-primary btn-block" />
+    </div>
+  </form>
+</div>
+
+{%if upload%}
+    <div class="container">
+        <br><br>
+        <table>
+            <tr>
+                <td>
+                    <img class="rounded flat-left img-fluid" src="/static/upload/{{upload_image}}" alt="">
+                </td>
+                <td>
+                    <img class="rounded flat-right img-fluid" src="/static/predict/{{upload_image}}" alt="">
+                </td>
+            </tr>
+        </table>
+        <br>
+        <table style="border: solid white; width: 100%;">
+            <tr style="border: solid blue;">
+                <th style="color: white;"> Cropped License Plate Image</th>
+                <th style="color: white;">Text</th>
+            </tr>
+            <tr style="border: solid blue;">
+                <td>
+                    <img class="img-fluid" src="/static/roi/{{upload_image}}" alt="" style="border: 2px solid white;">
+                </td>
+                <td style="background-color: greenyellow;">
+                    <h1 class="display-8" > {{text}}</h1>
+                </td>
+            </tr>
+        </table>
+        
+        
+        
+        <a href="/static/predict/{{upload_image}}" download="prediction.jpg" class="btn btn-success btn-lg btn-block">Download Result</a>
+         <style>
+        
+        .btn-success {
+            background-color: #3498db; 
+            color: #fff; 
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 18px;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-left: 620px;
+            margin-top:100px
+        }
+
+        .btn-success:hover {
+            background-color: #c64444;
+        }
+    </style>
+        
+    </div>
+
+{% endif %} {% endblock %}
